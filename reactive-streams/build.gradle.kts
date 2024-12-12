@@ -11,6 +11,9 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+
+    // https://mvnrepository.com/artifact/org.reactivestreams/reactive-streams
+    implementation("org.reactivestreams:reactive-streams:1.0.4")
 }
 
 tasks.test {
