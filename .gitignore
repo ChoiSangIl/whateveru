@@ -37,7 +37,7 @@
 # auto-import.
 # .idea/artifacts
 # .idea/compiler.xml
-# .idea/jarRepositories.xml
+.idea/jarRepositories.xml
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
@@ -166,5 +166,7 @@ gradle-app.setting
 ### Gradle Patch ###
 # Java heap dump
 *.hprof
+
+/.idea/kotlinc.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij,kotlin
