@@ -168,5 +168,6 @@ gradle-app.setting
 *.hprof
 
 /.idea/kotlinc.xml
+vcs.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij,kotlin
