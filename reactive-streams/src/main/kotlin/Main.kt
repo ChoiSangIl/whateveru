@@ -70,6 +70,9 @@ class SimpleSubscriber : Subscriber<Int> {
 // Main function to test
 fun main() {
     val publisher = SimplePublisher(listOf(1, 2, 3, 4, 5,6,7,8,9))
-    val subscriber = SimpleSubscriber()
-    publisher.subscribe(subscriber)
+    val subscriber1 = SimpleSubscriber()
+    val subscriber2 = SimpleSubscriber()
+
+    publisher.subscribe(subscriber1)
+    publisher.subscribe(subscriber2)
 }
