@@ -21,12 +21,11 @@ class CompletionFutureStudy{
     }
 
     private fun helloRunningStage(): CompletionStage<String> {
-        val future = CompletableFuture.supplyAsync {
-            Thread.sleep(100)
+        return CompletableFuture.supplyAsync {
+            Thread.sleep(1000)
             printlnWithThreadName("helloRunningStage start...!")
             "Hello, CompletableFuture!"
         }
-        return future
     }
 
     @Test
