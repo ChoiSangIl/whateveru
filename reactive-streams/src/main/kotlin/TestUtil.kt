@@ -1,5 +1,7 @@
 package org.example
 
+import java.time.LocalDateTime
+
 fun printlnWithThreadName(message: Any?) {
-    println("[${Thread.currentThread().name}] $message")
+    println("${LocalDateTime.now()} [${Thread.currentThread().name}] $message")
 }

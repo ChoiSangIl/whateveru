@@ -89,4 +89,82 @@ class CompletionFutureStudy{
 
         Thread.sleep(2000)
     }
+
+    @Test
+    @DisplayName("completableFuture 는 완료 상태로 변경할 수 있고 이미 완료 된 경우 FALSE 를 반환 한다.")
+    fun completeTest() {
+        val future = CompletableFuture<String>()
+
+        assert(!future.isDone)
+
+        var triggered = future.complete("completed")
+        assert(future.isDone)
+        assert(triggered)
+        assert(future.get() == "completed")
+
+        triggered = future.complete("completed2")
+        assert(future.isDone)
+        assert(!triggered)
+        assert(future.get() == "completed")
+    }
+
+    @Test
+    @DisplayName("completableFuture 는 isCompletedExceptionally 로 오류가 났는지 확인할 수 있다.")
+    fun isCompletedExceptionallyTest(){
+        val futureWithException = CompletableFuture.supplyAsync{
+            return@supplyAsync 1/0
+        }
+        Thread.sleep(100)
+
+        assert(futureWithException.isDone)
+        assert(futureWithException.isCompletedExceptionally)
+    }
+
+    fun waitAndReturn(millis: Int, value: Int): CompletableFuture<Int> {
+        return CompletableFuture.supplyAsync<Int> {
+            try {
+                printlnWithThreadName("waitAndReturn: {$millis}ms")
+                Thread.sleep(millis.toLong())
+            } catch (e: InterruptedException) {
+                throw RuntimeException(e)
+            }
+            value
+        }
+    }
+
+    @Test
+    @DisplayName("CompletableFuture.allOf() 를 사용하면 각 Future 가 완료될 때까지 기다린다.")
+    fun allOfTest(){
+        printlnWithThreadName("start")
+
+        val firstFuture = waitAndReturn(100, 1)
+        val secondFuture = waitAndReturn(500, 2)
+        val thirdFuture = waitAndReturn(3000, 3)
+
+        CompletableFuture.allOf(firstFuture, secondFuture, thirdFuture).thenAcceptAsync{
+            printlnWithThreadName("after allOf")
+            printlnWithThreadName(firstFuture.get())
+            printlnWithThreadName(secondFuture.get())
+            printlnWithThreadName(thirdFuture.get())
+        }.join()
+
+        println("end")
+    }
+
+    @Test
+    @DisplayName("anyOf 의 경우 가장 빨리 끝난 Future 의 결과를 가져온다.")
+    fun anyOfTest(){
+        printlnWithThreadName("start")
+
+        val firstFuture = waitAndReturn(500, 1)
+        val secondFuture = waitAndReturn(100, 2)
+        val thirdFuture = waitAndReturn(3000, 3)
+
+        CompletableFuture.anyOf(firstFuture, secondFuture, thirdFuture).thenAcceptAsync{
+            printlnWithThreadName("after anyOf")
+            printlnWithThreadName("first value $it")
+        }.join()
+
+        println("end")
+    }
 }
