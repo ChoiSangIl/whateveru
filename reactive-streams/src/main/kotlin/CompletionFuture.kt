@@ -167,4 +167,11 @@ class CompletionFutureStudy{
 
         println("end")
     }
+
+    /**
+     * COMPLETABLE FUTURE 한계
+     * 지연 로딩 기능을 제공하지 않는다.
+     * 지속적으로 생성되는 데이터를 처리하기 어렵다.
+     * 데이터를 반환하고 나면 다시 다른 값을 전달하기 어렵다.
+     */
 }
