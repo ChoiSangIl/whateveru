@@ -1,4 +1,4 @@
-package org.example
+package org.example.completable.future
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
