@@ -121,7 +121,7 @@ class CompletionFutureStudy{
         assert(futureWithException.isCompletedExceptionally)
     }
 
-    fun waitAndReturn(millis: Int, value: Int): CompletableFuture<Int> {
+    private fun waitAndReturn(millis: Int, value: Int): CompletableFuture<Int> {
         return CompletableFuture.supplyAsync<Int> {
             try {
                 printlnWithThreadName("waitAndReturn: {$millis}ms")

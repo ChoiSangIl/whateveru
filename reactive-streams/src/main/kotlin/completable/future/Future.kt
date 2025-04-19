@@ -40,7 +40,7 @@ class JavaFutureStudy {
         return try {
             executor.submit<String> {
                 println("[${Thread.currentThread().name} executor.submit() 실행됨")
-                Thread.sleep(1000)
+                Thread.sleep(5000)
                 "Hello, World!"
             }
         } finally {
@@ -52,7 +52,7 @@ class JavaFutureStudy {
     @DisplayName("Future 테스트 - Timeout 설정 > timeout 시간동안 Thread 는 Blocking 된다")
     fun futureTimeoutTest() {
         val future: Future<String> = timeoutFuture()
-        val futureResult = future.get(1500, java.util.concurrent.TimeUnit.MILLISECONDS)
+        val futureResult = future.get(6000, java.util.concurrent.TimeUnit.MILLISECONDS)
 
         Assertions.assertEquals("Hello, World!", futureResult)
         Assertions.assertTrue(future.isDone)
