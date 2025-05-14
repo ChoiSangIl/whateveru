@@ -8,7 +8,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicLong
 
-class AsyncPublisher(private val data: List<Int>) : Publisher<Int> {
+class SimplePublisher(private val data: List<Int>) : Publisher<Int> {
     override fun subscribe(subscriber: Subscriber<in Int>) {
         val subscription = AsyncSubscription(subscriber, data)
         subscriber.onSubscribe(subscription)
@@ -70,7 +70,7 @@ class AsyncPublisher(private val data: List<Int>) : Publisher<Int> {
 }
 
 
-class AsyncSubscriber : Subscriber<Int> {
+class SimpleSubscriber : Subscriber<Int> {
     private var subscription: Subscription? = null
 
     override fun onSubscribe(s: Subscription) {
@@ -95,7 +95,8 @@ class AsyncSubscriber : Subscriber<Int> {
 }
 
 fun main() {
-    val publisher = AsyncPublisher((1..10).toList())
-    val subscriber = AsyncSubscriber()
-    publisher.subscribe(subscriber)
+    println("[${Thread.currentThread().name}] main thread start...")
+    val publisher = SimplePublisher((1..10).toList())
+    val subscriber = SimpleSubscriber()
+    publisher.subscribe(subscriber = subscriber)
 }

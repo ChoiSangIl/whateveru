@@ -17,6 +17,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
     implementation("org.junit.jupiter:junit-jupiter-api:5.12.1")
+
+    // https://mvnrepository.com/artifact/io.projectreactor/reactor-core
+    implementation("io.projectreactor:reactor-core:3.8.0-M2")
 }
 
 tasks.test {
