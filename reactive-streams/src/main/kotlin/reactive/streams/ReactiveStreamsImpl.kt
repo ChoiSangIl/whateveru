@@ -1,4 +1,4 @@
-package org.example.reactive.streams
+package reactive.streams
 
 import org.reactivestreams.Publisher
 import org.reactivestreams.Subscriber

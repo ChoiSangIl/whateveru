@@ -1,5 +1,6 @@
 package org.example.reactive.streams
 
+import reactive.streams.SimpleSubscriber
 import reactor.core.publisher.Flux
 import reactor.core.scheduler.Schedulers
 import java.util.concurrent.Executors
