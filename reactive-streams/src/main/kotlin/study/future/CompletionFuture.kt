@@ -1,6 +1,6 @@
-package completable.future
+package study.future
 
-import util.printlnWithThreadName
+import study.util.printlnWithThreadName
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import java.util.concurrent.CompletableFuture

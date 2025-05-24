@@ -1,4 +1,4 @@
-package util
+package study.util
 
 import java.time.LocalDateTime
 
