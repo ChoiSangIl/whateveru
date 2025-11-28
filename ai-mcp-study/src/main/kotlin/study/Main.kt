@@ -1,3 +1,3 @@
 package study
 
-fun main() = runMcpWeatherServer()
+fun main() = runMcpServer()

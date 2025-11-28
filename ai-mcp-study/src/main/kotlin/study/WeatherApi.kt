@@ -22,7 +22,7 @@ suspend fun HttpClient.getForecast(latitude: Double, longitude: Double): List<St
             ${period.name}:
             Temperature: ${period.temperature} ${period.temperatureUnit}
             Wind: ${period.windSpeed} ${period.windDirection}
-            study.Forecast: ${period.detailedForecast}
+            Forecast: ${period.detailedForecast}
         """.trimIndent()
     }
 }

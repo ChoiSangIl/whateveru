@@ -31,7 +31,7 @@ import kotlinx.serialization.json.putJsonObject
  * Starts an MCP server that provides weather-related tools for fetching active
  * weather alerts by state and weather forecasts by latitude/longitude.
  */
-fun runMcpWeatherServer() {
+fun runMcpServer() {
     // Base URL for the Weather API
     val baseUrl = "https://api.weather.gov"
 
@@ -46,7 +46,6 @@ fun runMcpWeatherServer() {
             contentType(ContentType.Application.Json)
         }
         // Install content negotiation plugin for JSON serialization/deserialization
-
         install(ContentNegotiation) {
             json(
                 Json {
