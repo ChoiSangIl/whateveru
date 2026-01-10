@@ -14,32 +14,20 @@ class SimpleMcpTool(
     private val webClient: WebClient
 ) {
 
-    @McpTool(description = "크몽 서비스 1차 카테고리 탐색(검색), 루트 카테고리 기준으로 검색")
-    fun getCategoryGroups(): String {
+    @McpTool(description = "whateveru tistory(티스토리) blog rss(피드) 검색")
+    fun getBlogRss(): String {
         return webClient.get()
-            .uri("https://api.kmong.com/gig-app/category/v1/global-navigation-bar")
-            .retrieve()
-            .toEntity(String::class.java)
-            .block()
-            .toMcpJson()
-    }
-
-    @McpTool(description = "크몽 서비스 상세 카테고리 탐색 (categoryId 기준)")
-    fun getCategoryDetails(categoryId: Long): String {
-        return webClient.get()
-            .uri(
-                "https://api.kmong.com/gig-app/category/v1/categories/{categoryId}/side-navigation-bar",
-                categoryId
+            .uri("https://whateveru.tistory.com/rss")
+            .accept(
+                MediaType.APPLICATION_XML,
+                MediaType.TEXT_XML,
+                MediaType("application", "rss+xml"),
+                MediaType.ALL
             )
             .retrieve()
             .toEntity(String::class.java)
             .block()
             .toMcpJson()
-    }
-
-    @McpTool(description = "크몽 서비스 카테고리 주소 링크")
-    fun getKmongCategoryLink(categoryId: Long): String {
-        return "https://kmong.com/category/${categoryId}"
     }
 }
 
