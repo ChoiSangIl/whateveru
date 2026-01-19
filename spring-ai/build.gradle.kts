@@ -17,12 +17,15 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://repo.spring.io/milestone") }
     maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.ai:spring-ai-starter-mcp-server-webmvc:1.1.2")
+    implementation(platform("org.springframework.ai:spring-ai-bom:1.1.2"))
+    implementation("org.springframework.ai:spring-ai-starter-mcp-server-webmvc")
+    implementation("org.springframework.ai:spring-ai-starter-model-ollama")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
